@@ -133,4 +133,12 @@ export default [
     favicon:
       "https://static001.infoq.cn/static/infoq/www/img/share-default-5tgbiuhgfefgujjhg.png",
   },
+  {
+    hostname: "www.gcores.com",
+    pathname: "/link",
+    title: "机核",
+    param: "target",
+    example: "https://www.gcores.com/link?target=https%3A%2F%2Fcocos.com",
+    favicon: "https://www.gcores.com/favicon.ico",
+  },
 ];
