@@ -1,15 +1,15 @@
-import { targetParams, $, i18n, message, generateIssueUrl } from "./utils.js";
-import sitesBuiltIn from "./sites.js";
+import { targetParams, $, i18n, message, generateIssueUrl } from './utils.js';
+import sitesBuiltIn from './sites.js';
 
-document.addEventListener("DOMContentLoaded", function () {
-  const $settingButton = $("setting");
-  const $currentUrl = $("current-url");
-  const $siteTitle = $("site-title");
-  const $hostnameInput = $("hostname-input");
-  const $targetParamInput = $("target-param-input");
-  const $targetDomain = $("target-domain");
-  const $submitButton = $("submit");
-  const $reportButton = $("report");
+document.addEventListener('DOMContentLoaded', function () {
+  const $settingButton = $('setting');
+  const $currentUrl = $('current-url');
+  const $siteTitle = $('site-title');
+  const $hostnameInput = $('hostname-input');
+  const $targetParamInput = $('target-param-input');
+  const $targetDomain = $('target-domain');
+  const $submitButton = $('submit');
+  const $reportButton = $('report');
 
   i18n();
 
@@ -21,15 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  $currentUrl.addEventListener("change", (e) => {
+  $currentUrl.addEventListener('change', (e) => {
     analyzeUrl(e.target.value);
   });
 
-  $targetParamInput.addEventListener("change", (e) => {
-    analyzeUrl($currentUrl.value, "", e.target.value);
+  $targetParamInput.addEventListener('change', (e) => {
+    analyzeUrl($currentUrl.value, '', e.target.value);
   });
 
-  $submitButton.addEventListener("click", (e) => {
+  $submitButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     const btn = e.target;
@@ -46,20 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     updateUserData(data)
       .then(() => {
-        message(chrome.i18n.getMessage("popup_addSuccessTip"), "info");
+        message(chrome.i18n.getMessage('popup_addSuccessTip'), 'info');
       })
       .catch((error) => {
-        message(
-          error.message || chrome.i18n.getMessage("popup_addErrorTip"),
-          "error"
-        );
+        message(error.message || chrome.i18n.getMessage('popup_addErrorTip'), 'error');
       })
       .finally(() => {
         btn.isUpdating = false;
       });
   });
 
-  function analyzeUrl(link, title = "", param = "") {
+  function analyzeUrl(link, title = '', param = '') {
     $currentUrl.value = link;
     $currentUrl.title = link;
 
@@ -72,17 +69,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const domain = url.hostname;
     $hostnameInput.value = domain;
 
-    const targetParam =
-      param || targetParams.find((param) => url.searchParams.has(param));
+    const targetParam = param || targetParams.find((param) => url.searchParams.has(param));
 
     if (targetParam) {
       $targetParamInput.value = targetParam;
 
       const targetUrl = url.searchParams.get(targetParam);
-      $targetDomain.value = targetUrl ? decodeURIComponent(targetUrl) : "";
+      $targetDomain.value = targetUrl ? decodeURIComponent(targetUrl) : '';
     } else {
-      $targetParamInput.value = "";
-      $targetDomain.value = "";
+      $targetParamInput.value = '';
+      $targetDomain.value = '';
     }
 
     updateSubmitButton();
@@ -95,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   $settingButton.addEventListener(
-    "click",
+    'click',
     () => {
       window.open(`chrome-extension://${chrome.runtime.id}/page-options.html`);
     },
@@ -103,12 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   $reportButton.addEventListener(
-    "click",
+    'click',
     () => {
-      const issueUrl = generateIssueUrl(
-        $currentUrl.value || $hostnameInput.value
-      );
-      window.open(issueUrl, "_blank");
+      const issueUrl = generateIssueUrl($currentUrl.value || $hostnameInput.value);
+      window.open(issueUrl, '_blank');
     },
     false
   );
@@ -117,18 +111,16 @@ document.addEventListener("DOMContentLoaded", function () {
 function updateUserData(data) {
   return new Promise((resolve, reject) => {
     if (!data || !data.hostname) {
-      return reject(new Error("Invalid data"));
+      return reject(new Error('Invalid data'));
     }
 
     if (sitesBuiltIn.some((site) => site.hostname === data.hostname)) {
-      return reject(new Error("Cannot modify built-in sites"));
+      return reject(new Error('Cannot modify built-in sites'));
     }
 
-    chrome.storage.sync.get("sites", (result) => {
+    chrome.storage.sync.get('sites', (result) => {
       const sites = result.sites || [];
-      const existingIndex = sites.findIndex(
-        (site) => site.hostname === data.hostname
-      );
+      const existingIndex = sites.findIndex((site) => site.hostname === data.hostname);
 
       if (existingIndex !== -1) {
         // Update existing site
@@ -146,11 +138,11 @@ function updateUserData(data) {
 }
 
 function createParamOptions() {
-  const $targetParamList = $("target-param-list");
-  $targetParamList.innerHTML = "";
+  const $targetParamList = $('target-param-list');
+  $targetParamList.innerHTML = '';
 
   targetParams.forEach((param) => {
-    const option = document.createElement("option");
+    const option = document.createElement('option');
     option.value = param;
     option.textContent = param;
     $targetParamList.appendChild(option);
