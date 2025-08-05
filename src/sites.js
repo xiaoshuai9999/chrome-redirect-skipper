@@ -133,4 +133,12 @@ export default [
     param: 'url',
     example: 'https://www.iplaysoft.com/link/?url=https%3A%2F%2Fcocos.com',
   },
+  {
+    hostname: 'www.oschina.net',
+    pathname: '/action/GoToLink',
+    title: 'OSChina',
+    param: 'url',
+    example: 'https://www.oschina.net/action/GoToLink?url=https%3A%2F%2Fcocos.com',
+    favaicon: 'https://static.oschina.net/new-osc/img/favicon.ico',
+  },
 ];
