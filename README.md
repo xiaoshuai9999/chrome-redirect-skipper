@@ -58,6 +58,7 @@
 
 ```mermaid
 flowchart TB
+  Start[导航到某个页面]
   A[onBeforeNavigate]
   B(插件或用户是否有收录当前地址)
   C(是否开启了模糊匹配)
@@ -66,7 +67,7 @@ flowchart TB
   X[忽略]
   Y[跳转到目标地址]
 
-  A -- 获取页面地址 --> B --yes--> D
+  Start -- 进入浏览器的钩子 --> A -- 获取页面地址 --> B --yes--> D
   B -- no --> C -- yes --> D
 
  D -- yes --> Y
