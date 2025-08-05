@@ -108,7 +108,7 @@ export default [
     title: '豆瓣',
     param: 'url',
     example: 'https://www.douban.com/link2/?url=https%3A%2F%2Fcocos.com',
-    favaicon: 'https://img1.doubanio.com/favicon.ico',
+    favicon: 'https://img1.doubanio.com/favicon.ico',
   },
   {
     hostname: 'xie.infoq.cn',
@@ -124,7 +124,7 @@ export default [
     title: 'InfoQ',
     param: 'target',
     example: 'https://www.infoq.cn/link?target=https%3A%2F%2Fcocos.com',
-    favaicon: 'https://static001.infoq.cn/static/infoq/www/img/share-default-5tgbiuhgfefgujjhg.png',
+    favicon: 'https://static001.infoq.cn/static/infoq/www/img/share-default-5tgbiuhgfefgujjhg.png',
   },
   {
     hostname: 'www.iplaysoft.com',
@@ -139,6 +139,14 @@ export default [
     title: 'OSChina',
     param: 'url',
     example: 'https://www.oschina.net/action/GoToLink?url=https%3A%2F%2Fcocos.com',
-    favaicon: 'https://static.oschina.net/new-osc/img/favicon.ico',
+    favicon: 'https://static.oschina.net/new-osc/img/favicon.ico',
+  },
+  {
+    hostname: 'www.gcores.com',
+    pathname: '/link',
+    title: '机核',
+    param: 'target',
+    example: 'https://www.gcores.com/link?target=https%3A%2F%2Fcocos.com',
+    favicon: 'https://www.gcores.com/favicon.ico',
   },
 ];
