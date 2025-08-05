@@ -33,13 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const template = `
         <div class="site-info">
-            ${
-              site.favicon
-                ? `<img class="site-favicon" src="${site.favicon}" alt="${
-                    site.title || site.hostname
-                  }">`
-                : ""
-            }
+            <img class="site-favicon" src="${
+              site.favicon ||
+              `https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(
+                site.hostname
+              )}`
+            }" alt="${site.title || site.hostname}">
           <span class="site-name">${site.title || site.hostname}</span>
           <a
             class="site-hostname"

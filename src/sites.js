@@ -4,6 +4,7 @@
  *  title: The display name of the redirect service.
  *  param: The query parameter name for the target URL.
  *  getTargetUrl: A function to extract the target URL from the full URL (optional).
+ *  favicon: The URL of the favicon for the redirect service (optional).
  */
 
 export default [
@@ -72,7 +73,6 @@ export default [
       return url.replace("https://blog.51cto.com/transfer?", "");
     },
     example: "https://blog.51cto.com/transfer?https%3A%2F%2Fcocos.com",
-    favicon: "https://blog.51cto.com/favicon.ico",
   },
   {
     hostname: "weibo.cn",
@@ -132,5 +132,12 @@ export default [
     example: "https://www.infoq.cn/link?target=https%3A%2F%2Fcocos.com",
     favaicon:
       "https://static001.infoq.cn/static/infoq/www/img/share-default-5tgbiuhgfefgujjhg.png",
+  },
+  {
+    hostname: "www.iplaysoft.com",
+    pathname: "/link",
+    title: "异次元",
+    param: "url",
+    example: "https://www.iplaysoft.com/link/?url=https%3A%2F%2Fcocos.com",
   },
 ];

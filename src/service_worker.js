@@ -48,6 +48,9 @@ chrome.webNavigation.onBeforeNavigate.addListener(
         chrome.tabs.update(details.tabId, {
           url: decodeURIComponent(targetUrl),
         });
+      } else {
+        // 如果目标URL不是http开头，则不进行重定向
+        console.warn(`Invalid target URL: ${targetUrl}`);
       }
     } catch (error) {
       // do nothing
